@@ -43,3 +43,14 @@ resource "aws_instance" "apache" {
     Program = "true"
   }
 }
+resource "aws_instance" "grafana" {
+  ami           = "ami-091a58610910a87a9"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.private[0].id
+  security_groups = [aws_security_group.Apache.id]
+
+  tags = {
+    Name = "Grafana",
+    Program = "true"
+  }
+}
